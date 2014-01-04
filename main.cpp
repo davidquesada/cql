@@ -7,7 +7,6 @@
 using namespace std;
 
 CREATE TABLE Boolean SCHEMA ( value CHAR (6) );
-
 INSERT INTO Boolean ATTRIBUTES (value) VALUES ( "true" );
 INSERT INTO Boolean ATTRIBUTES (value) VALUES ( "false" );
 
@@ -28,7 +27,6 @@ INSERT INTO Teams ATTRIBUTES ( tid, name, sid ) VALUES ( 217, "ThunderChickens",
 INSERT INTO Teams ATTRIBUTES ( tid, name, sid ) VALUES ( 233, "The Pink Team",	4 );
 INSERT INTO Teams ATTRIBUTES ( tid, name, sid ) VALUES ( 254, "Cheesy Poofs",	3 );
 
-
 CREATE TABLE Abbrev SCHEMA ( code CHAR (10), value CHAR (70), nothing INTEGER );
 INSERT INTO Abbrev ATTRIBUTES ( code, value ) VALUES ( "EECS", "Electical Engineering / Computer Science" );
 INSERT INTO Abbrev ATTRIBUTES ( code, value ) VALUES ( "LING", "Linguistics" );
@@ -43,18 +41,17 @@ INSERT INTO Profs ATTRIBUTES ( pid, name, department ) VALUES ( 18, "Michael Lem
 INSERT INTO Profs ATTRIBUTES ( pid, name, department) VALUES  ( 14, "Valeria Bertacco", "EECS" );
 INSERT INTO Profs ATTRIBUTES ( pid, name, department ) VALUES ( 21, "David Speyer", "MATH" );
 INSERT INTO Profs ATTRIBUTES ( pid, name, department ) VALUES ( 24, "Ella Atkins", "AERO" );
-
    
-CREATE TABLE Students SCHEMA ( sid INTEGER, name CHAR(45), gpa DOUBLE );
+CREATE TABLE Students
+ SCHEMA ( sid INTEGER, name CHAR(45), gpa DOUBLE );
 
 INSERT INTO Students ATTRIBUTES ( sid, gpa, name ) VALUES ( 1, 3.85, "Charlie" );
 INSERT INTO Students ATTRIBUTES ( sid, gpa, name ) VALUES ( 3, 3.59, "NAND Dalal");
 INSERT INTO Students ATTRIBUTES ( sid, gpa, name ) VALUES ( 8, 3.76, "Rohit Ramprasad" );
 //INSERT INTO Students VALUES ( 9, "David Quesada" );
-	
 
-
-CREATE TABLE Classes SCHEMA ( cid INTEGER, code CHAR(10), number INTEGER, title CHAR(100));
+CREATE TABLE Classes 
+SCHEMA ( cid INTEGER, code CHAR(10), number INTEGER, title CHAR(100));
 INSERT INTO Classes ATTRIBUTES ( cid,code, number ) VALUES ( 1, "EECS", 281 );
 INSERT INTO Classes ATTRIBUTES ( cid,code, number ) VALUES ( 2, "MATH", 417 );
 INSERT INTO Classes ATTRIBUTES ( cid,code, number ) VALUES ( 3, "ECON", 101 );
@@ -71,9 +68,3 @@ int main()
 	return 0;
 
 }
-
-
-
-
-
-

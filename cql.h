@@ -122,23 +122,30 @@
 
 #define MAX_COLUMNS 10
 
-#define TBLNAME CAT(____tbl,__LINE__)
+#define TBLNAME __ctable<__COUNTER__/2>
+
+template<int tableID>
+struct __ctable;
 
 #define CREATE struct TBLNAME &
 #define TABLE 
-#define SCHEMA(...) = *(TBLNAME *)&(new customTable())->ref() TBL_INIT(__VA_ARGS__); \
-	struct TBLNAME : public table \
+#define SCHEMAT(className,...)\
+		= *(className *)&(new customTable())->ref() TBL_INIT(__VA_ARGS__); \
+	template<> \
+	struct className : public table \
 	{					\
 	public:				\
 		TBL_PROPS(__VA_ARGS__) \
 	}
-
+#define SCHEMA(...) SCHEMAT(TBLNAME,__VA_ARGS__)
 
 
 // For insert, we are going to put the result into a variable, so we are allowed to
 // make inserts in the global scope. Unfortunately, with this, we won't be able to
 // use the INSERT query in an expression, like we can with select.
-#define INSERT_VAR_NAME CAT(___inst_,__COUNTER__)
+// - We're using __COUNTER__ twice, so we don't get out of phase for our
+//	 CREATE TABLE macro, which depends on sequential calls to __COUNTER__
+#define INSERT_VAR_NAME CAT(___insert_,CAT(__COUNTER__,__COUNTER__))
 #define INSERT auto &&INSERT_VAR_NAME = 
 #define INTO
 
